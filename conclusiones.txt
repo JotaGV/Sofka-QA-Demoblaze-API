@@ -1,0 +1,26 @@
+EJERCICIO 2 - CONCLUSIONES DE PRUEBAS API DEMOBLAZE
+
+FECHA DE EJECUCIÓN
+9 de octubre de 2026 (hora de Ecuador).
+
+HERRAMIENTA Y SERVICIOS
+Postman Web. Endpoints evaluados: https://api.demoblaze.com/signup y https://api.demoblaze.com/login. Método HTTP: POST. Datos enviados en formato JSON.
+
+RESULTADOS OBTENIDOS
+Se ejecutaron individualmente los cuatro escenarios solicitados y las comprobaciones automatizadas mostradas en Postman finalizaron satisfactoriamente: dos comprobaciones aprobadas por solicitud, ocho en total.
+
+1. Registro exitoso: el servicio devolvió HTTP 200 y una cadena JSON vacía (""). Las dos comprobaciones de Postman resultaron PASSED.
+2. Registro de usuario existente: el servicio devolvió HTTP 200 y el mensaje "This user already exist.". Las dos comprobaciones resultaron PASSED.
+3. Inicio de sesión válido: el servicio devolvió HTTP 200 y una respuesta que contiene "Auth_token:". Las dos comprobaciones resultaron PASSED.
+4. Inicio de sesión inválido: el servicio devolvió HTTP 200 y un mensaje de error de autenticación. La validación acepta "Wrong password." o "User does not exist.", conforme al comportamiento observado del servicio. Las dos comprobaciones resultaron PASSED.
+
+HALLAZGOS
+Los servicios devuelven HTTP 200 incluso en los escenarios funcionales negativos de registro duplicado y autenticación incorrecta. Por ello, comprobar únicamente el código HTTP no permite determinar si la operación fue aceptada; es necesario examinar el cuerpo de la respuesta.
+
+La API distingue entre un usuario inexistente y una contraseña incorrecta mediante mensajes diferentes. Esto permite identificar con mayor precisión el motivo del rechazo, aunque en un sistema de autenticación real podría facilitar la enumeración de usuarios.
+
+LIMITACIONES
+Las pruebas se realizaron contra un sitio público de demostración. El registro exitoso crea datos persistentes: para repetirlo es necesario cambiar el nombre de usuario por uno no utilizado. La validación de autenticación correcta comprueba la presencia del identificador "Auth_token:", pero no verifica la validez ni el contenido interno del token. La prueba negativa de inicio de sesión acepta dos mensajes posibles y no pretende distinguir entre ambos casos. Los resultados corresponden a ejecuciones individuales observadas; no se afirma una ejecución conjunta mediante Collection Runner.
+
+CONCLUSIÓN
+Los cuatro escenarios definidos para el ejercicio se implementaron y ejecutaron satisfactoriamente con Postman, utilizando validaciones automáticas del estado HTTP y de las respuestas funcionales. La colección permite reproducir las solicitudes, siempre que se utilicen datos de usuario adecuados para cada escenario. La implementación mantiene el alcance básico solicitado para la prueba técnica.
