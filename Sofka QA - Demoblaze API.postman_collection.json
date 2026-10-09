@@ -24,7 +24,7 @@
         "header": [],
         "body": {
           "mode": "raw",
-          "raw": "{\r\n  \"username\": \"sofka_qa_005\",\r\n  \"password\": \"Sofka2026Test\"\r\n}",
+          "raw": "{\r\n  \"username\": \"sofka_qa_006\",\r\n  \"password\": \"Sofka2026Test\"\r\n}",
           "options": {
             "raw": {
               "language": "json"
